@@ -1,4 +1,4 @@
-package hub.programs.boombox.activities;
+package hub.programs.boombox;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -19,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import hub.programs.boombox.R;
 
 public class Player extends AppCompatActivity {
     SeekBar mSeekBar;

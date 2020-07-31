@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Player">
+    tools:context=".Player">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/music" />
 
     <TextView
         android:id="@+id/songTitle"
@@ -27,7 +27,7 @@
         android:layout_marginRight="24dp"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="#1E1D1D"
+        android:textColor="@color/design_default_color_primary_dark"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
