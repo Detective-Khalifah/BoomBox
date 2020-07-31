@@ -17,4 +17,20 @@ public class MainActivity extends AppCompatActivity {
         theMediaPlayer = MediaPlayer.create(MainActivity.this.getBaseContext(), R.raw.traveling);
         theMediaPlayer.start();
     }
+
+    @Override
+    protected void onDestroy () {
+        super.onDestroy();
+        if (theMediaPlayer != null)
+            theMediaPlayer.release();
+    }
+
+    // Release resources clinged onto by MediaPlayer when Activity is invisible/stopped - no longer
+    // interacting with user. Background playback later
+    @Override
+    protected void onStop () {
+        super.onStop();
+        theMediaPlayer.release();
+        theMediaPlayer = null;
+    }
 }
