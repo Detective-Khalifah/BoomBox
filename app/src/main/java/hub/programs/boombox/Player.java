@@ -68,15 +68,15 @@ public class Player extends AppCompatActivity {
         position = bundle.getInt("position", 0);
         initPlayer(position);
 
-        curListIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent list = new Intent(getApplicationContext(),CurrentList.class);
-                list.putExtra("songsList",allSongs);
-                startActivity(list);
-
-            }
-        });
+//        curListIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent list = new Intent(getApplicationContext(),CurrentList.class);
+//                list.putExtra("songsList",allSongs);
+//                startActivity(list);
+//
+//            }
+//        });
 
 
         playIcon.setOnClickListener(new View.OnClickListener() {
