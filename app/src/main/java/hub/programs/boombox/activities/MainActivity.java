@@ -1,11 +1,13 @@
-package hub.programs.boombox;
+package hub.programs.boombox.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import hub.programs.boombox.R;
+
+public class    MainActivity extends AppCompatActivity {
 
     MediaPlayer theMediaPlayer;
 
