@@ -57,8 +57,6 @@ public class Music extends Fragment {
 
         askStoragePermissions();
 
-        display();
-
         return view;
     }
 
@@ -72,7 +70,7 @@ public class Music extends Fragment {
             if(singleFile.isDirectory() && !singleFile.isHidden()){
                 musicLists.addAll(findMusics(singleFile));
             }else{
-                if(singleFile.getName().endsWith(".mp3") || singleFile.getName().endsWith(".m4a") || singleFile.getName().endsWith(".wav") || singleFile.getName().endsWith(".m4b")){
+                if(singleFile.getName().endsWith(".mp3") || singleFile.getName().endsWith(".m4a") || singleFile.getName().endsWith(".wav") || singleFile.getName().endsWith(".m4b") || singleFile.getName().endsWith(".ogg") || singleFile.getName().endsWith(".aac")){
                     musicLists.add(singleFile);
                 }
             }
@@ -84,22 +82,18 @@ public class Music extends Fragment {
 
     public void display(){
 
-        Log.i(Music.class.getName(), "Directory state: " + Environment.getExternalStorageState());
-        Log.i(Music.class.getName(), "Environment::" + Environment.getDataDirectory());
-        String path = Environment.getExternalStorageDirectory().toString();
-        File f = new File(path);
-        File file[] = f.listFiles();
-        Log.i(Music.class.getName(), "f::" + f);
-        Log.i(Music.class.getName(), "file[]:: "+ Arrays.toString(file));
+        Log.i(Music.class.getName(), "Directory state: " + Environment.getExternalStorageState()); // returns state of accessible/non-accessible directory
+        Log.i(Music.class.getName(), "Environment::" + Environment.getDataDirectory()); // returns /data
 
-        final ArrayList<File> allSongs = findMusics(new File(Environment.getExternalStorageDirectory().toString()));
+        final ArrayList<File> allSongs = findMusics(new File(String.valueOf(Environment.getExternalStorageDirectory())));
 //        final ArrayList<File> allSongs = findMusics(Music.this.getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
         songs = new String[allSongs.size()];
 
+        Log.i(Music.class.getName(), "songs before:: " + Arrays.toString(songs));
         for(int i=0;i<allSongs.size();i++){
-            songs[i] = allSongs.get(i).getName().replace(".mp3","").replace(".m4a","").replace(".wav","").replace(".m4b","");
+            songs[i] = allSongs.get(i).getName().replace(".mp3","").replace(".m4a","").replace(".wav","").replace(".m4b","").replace(".ogg", "").replace(".aac", "");
         }
-        Log.i(Music.class.getName(), "songs:: " + Arrays.toString(songs));
+        Log.i(Music.class.getName(), "songs after:: " + Arrays.toString(songs));
 
         mArrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,songs);
         mListView.setAdapter(mArrayAdapter);
@@ -109,7 +103,6 @@ public class Music extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 // start music player when song name is clicked
-
                 String songName = mListView.getItemAtPosition(position).toString();
                 Intent play = new Intent(getActivity(),Player.class);
                 play.putExtra("songs",allSongs).putExtra("songName",songName).putExtra("position",position);
