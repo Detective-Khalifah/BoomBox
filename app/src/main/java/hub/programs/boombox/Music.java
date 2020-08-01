@@ -8,9 +8,16 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.PermissionRequest;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import androidx.fragment.app.Fragment;
 
@@ -46,7 +53,7 @@ public class Music extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_music, container, false);
         mListView = view.findViewById(R.id.musicListView);
 
-//        askStoragePermissions();
+        askStoragePermissions();
 
         display();
 
@@ -101,24 +108,24 @@ public class Music extends Fragment {
 
     }
 
-//    public void askStoragePermissions(){
-//        Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
-//            @Override
-//            public void onPermissionGranted(PermissionGrantedResponse response) {
-//                display();
-//            }
-//
-//            @Override
-//            public void onPermissionDenied(PermissionDeniedResponse response) {
-//
-//            }
-//
-//            @Override
-//            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-//                    token.continuePermissionRequest();
-//            }
-//        }).check();
-//    }
+    public void askStoragePermissions(){
+        Dexter.withActivity(getActivity()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE).withListener(new PermissionListener() {
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse response) {
+                display();
+            }
+
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse response) {
+
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown (com.karumi.dexter.listener.PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                permissionToken.continuePermissionRequest();
+            }
+        }).check();
+    }
 
 }
 
