@@ -13,9 +13,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar mToolbar;
     PagerAdapter mPagerAdapter;
     TabLayout mTabLayout;
-    TabItem musicTabItem;
-    TabItem albumTabItem;
-    TabItem playlistTabItem;
+    TabItem musicTabItem, albumTabItem, playlistTabItem;
     ViewPager mViewPager;
 
 
