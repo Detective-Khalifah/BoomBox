@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -84,13 +85,21 @@ public class Music extends Fragment {
     public void display(){
 
         Log.i(Music.class.getName(), "Directory state: " + Environment.getExternalStorageState());
-        final ArrayList<File> allSongs = findMusics(Music.this.getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
+        Log.i(Music.class.getName(), "Environment::" + Environment.getDataDirectory());
+        String path = Environment.getExternalStorageDirectory().toString();
+        File f = new File(path);
+        File file[] = f.listFiles();
+        Log.i(Music.class.getName(), "f::" + f);
+        Log.i(Music.class.getName(), "file[]:: "+ Arrays.toString(file));
+
+        final ArrayList<File> allSongs = findMusics(new File(Environment.getExternalStorageDirectory().toString()));
+//        final ArrayList<File> allSongs = findMusics(Music.this.getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
         songs = new String[allSongs.size()];
 
         for(int i=0;i<allSongs.size();i++){
             songs[i] = allSongs.get(i).getName().replace(".mp3","").replace(".m4a","").replace(".wav","").replace(".m4b","");
         }
-
+        Log.i(Music.class.getName(), "songs:: " + Arrays.toString(songs));
 
         mArrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,songs);
         mListView.setAdapter(mArrayAdapter);
