@@ -68,15 +68,15 @@ public class Player extends AppCompatActivity {
         position = bundle.getInt("position", 0);
         initPlayer(position);
 
-//        curListIcon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent list = new Intent(getApplicationContext(),CurrentList.class);
-//                list.putExtra("songsList",allSongs);
-//                startActivity(list);
-//
-//            }
-//        });
+        curListIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent list = new Intent(getApplicationContext(),CurrentList.class);
+                list.putExtra("songsList",allSongs);
+                startActivity(list);
+
+            }
+        });
 
 
         playIcon.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +152,7 @@ public class Player extends AppCompatActivity {
                     initPlayer(curSongPoition);
                 }
 
-                //playIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                playIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
 
             }
         });
@@ -186,7 +186,7 @@ public class Player extends AppCompatActivity {
             public void run() {
                 while (mMediaPlayer != null) {
                     try {
-//                        Log.i("Thread ", "Thread Called");
+                        Log.i("Thread ", "Thread Called");
                         // create new message to send to handler
                         if (mMediaPlayer.isPlaying()) {
                             Message msg = new Message();
@@ -206,7 +206,7 @@ public class Player extends AppCompatActivity {
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-//            Log.i("handler ", "handler called");
+            Log.i("handler ", "handler called");
             int current_position = msg.what;
             mSeekBar.setProgress(current_position);
             String cTime = createTimeLabel(current_position);

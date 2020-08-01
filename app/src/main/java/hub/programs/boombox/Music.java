@@ -5,6 +5,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,8 @@ public class Music extends Fragment {
 
     public void display(){
 
-        final ArrayList<File> allSongs = findMusics(Environment.getExternalStorageDirectory());
+        Log.i(Music.class.getName(), "Directory state: " + Environment.getExternalStorageState());
+        final ArrayList<File> allSongs = findMusics(Music.this.getContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
         songs = new String[allSongs.size()];
 
         for(int i=0;i<allSongs.size();i++){
